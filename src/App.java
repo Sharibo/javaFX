@@ -1,47 +1,52 @@
+import java.util.Random;
+
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 
 public class App extends Application {
     
     @Override
     public void start(Stage primaryStage) {
-        Button btn = new Button("Say 'Hello'");
-        Label lbl1 = new Label("Input your name:");
-        Label lbl2 = new Label();
-        TextField txt = new TextField();
 
-        btn.setOnAction(new EventHandler<ActionEvent>() {
+        ObservableList<PieChart.Data> data = FXCollections.observableArrayList(
+            new PieChart.Data("Data 1", 20),
+            new PieChart.Data("Data 2", 10),
+            new PieChart.Data("Data 3", 30)
+        );
 
-            @Override
-            public void handle(ActionEvent event) {
-                if ("".equals(txt.getText())) {
-                    lbl2.setText("Hello World!");
-                } else {
-                    lbl2.setText("Hello, " + txt.getText() + "!");
-                }
-            }
-            
+        Button btn1 = new Button("Add data");
+
+        btn1.setOnAction((event) -> {
+            data.add( new PieChart.Data("Data " + (data.size() + 1),
+                      10 + new Random().nextInt(30)) );
         });
 
-        GridPane root = new GridPane();
-        root.add(lbl1, 0, 0);
-        root.add(txt, 1, 0);
-        root.add(btn, 1, 1);
-        root.add(lbl2, 1, 2);
+        Button btn2 = new Button("Delete data");
 
-        root.setHgap(20);
-        root.setVgap(10);
+        btn2.setOnAction((event) -> {
+            if (!data.isEmpty()) {
+                data.remove( new Random().nextInt(data.size()) );
+            }
+        });
 
-        Scene scene = new Scene(root, 300, 250);
+        //* . . . . .
 
-        primaryStage.setTitle("Hello World!");
+        PieChart pie = new PieChart(data);
+        
+        FlowPane root = new FlowPane();
+        root.getChildren().add(btn1);
+        root.getChildren().add(btn2);
+        root.getChildren().add(pie);
+
+        Scene scene = new Scene(root, 450, 500);
+
+        primaryStage.setTitle("Data demo");
         primaryStage.setScene(scene);
         primaryStage.show();
 
