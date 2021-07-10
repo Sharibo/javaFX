@@ -1,14 +1,5 @@
-## Getting Started
+# JavaFX
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+It is one of many small java-projects, that I did on the basis of the **[spezialist](https://www.specialist.ru/) java courses levels 1 and 2.**
 
-## Folder Structure
-
-The workspace contains two folders by default, where:
-
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
-
-## Dependency Management
-
-The `JAVA DEPENDENCIES` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-pack/blob/master/release-notes/v0.9.0.md#work-with-jar-files-directly).
+Other related repositories: [java_repeat](https://github.com/Sharibo/java_repeat), [swing_box](https://github.com/Sharibo/swing_box), [swing_write_read](https://github.com/Sharibo/swing_write_read).
